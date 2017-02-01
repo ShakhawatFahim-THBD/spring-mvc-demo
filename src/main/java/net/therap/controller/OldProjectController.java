@@ -30,7 +30,7 @@ public class OldProjectController extends SimpleFormController {
 
         Map model = new HashMap<>();
         model.put("users", userService.getLogins());
-        model.put("title", "Old Home Page");
+        model.put("title", "Old Project Create Page");
         model.put("project", new Project());
 
         return new ModelAndView(VIEW_PAGE, model);

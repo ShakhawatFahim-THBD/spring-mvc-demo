@@ -23,7 +23,7 @@ public class UserService {
         for (int i = 0; i < 3; i++) {
             Login login = new Login();
             login.setId(i);
-            login.setName("login # " + (i + 1));
+            login.setName("login with tag number # " + (i + 1));
 
             logins.add(login);
         }

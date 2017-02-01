@@ -8,6 +8,7 @@ repositories {
 
 dependencies {
     providedCompile 'javax.servlet:servlet-api:2.5'
+    providedCompile group: 'org.springframework', name: 'spring-orm', version: '3.2.17.RELEASE'
     compile 'org.springframework:spring-webmvc:3.2.17.RELEASE'
     compile 'org.apache.commons:commons-lang3:3.0'
     compile 'javax.validation:validation-api:1.0.0.GA'

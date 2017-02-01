@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.validation.Valid;
 
 @Controller
@@ -57,8 +59,18 @@ public class ProjectController {
     }
 
     private void setupReferenceData(ModelMap model, Project project) {
-        model.put("title", "New Home Page");
+        model.put("title", "New Project Create Page");
         model.put("logins", userService.getLogins());
         model.put("project", project);
+    }
+
+    @PreDestroy
+    public void preDestory() {
+        System.out.println("Destroying " + this.getClass());
+    }
+
+    @PostConstruct
+    public void postContruct() {
+        System.out.println("Constructed " + this.getClass());
     }
 }

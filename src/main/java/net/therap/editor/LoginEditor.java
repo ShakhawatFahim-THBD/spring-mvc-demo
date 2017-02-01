@@ -32,7 +32,5 @@ public class LoginEditor extends PropertyEditorSupport {
         } catch (NumberFormatException nfe) {
             setValue(null);
         }
-
-
     }
 }
