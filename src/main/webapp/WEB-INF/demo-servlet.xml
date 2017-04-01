@@ -27,21 +27,6 @@
         </mvc:interceptor>
     </mvc:interceptors>
 
-    <bean id="/oldHome" class="net.therap.controller.OldProjectController"></bean>
-    <bean id="/oldHome.html" class="net.therap.controller.OldProjectController"></bean>
-
-    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-        <property name="mappings">
-            <props>
-                <prop key="/project.htm">oldProjectController</prop>
-                <prop key="/oldProject*">oldProjectController</prop>
-                <prop key="/pilotProject">oldProjectController</prop>
-            </props>
-        </property>
-    </bean>
-
-    <bean name="oldProjectController" class="net.therap.controller.OldProjectController"/>
-
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/"/>
         <property name="suffix" value=".jsp"/>

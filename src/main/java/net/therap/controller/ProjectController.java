@@ -2,6 +2,7 @@ package net.therap.controller;
 
 import net.therap.command.Login;
 import net.therap.command.Project;
+import net.therap.command.ProjectType;
 import net.therap.editor.LoginEditor;
 import net.therap.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -24,6 +26,9 @@ import javax.validation.Valid;
 public class ProjectController {
 
     private static final String VIEW_PAGE = "project";
+    private static final String VIEW_PAGE1 = "project1";
+    private static final String VIEW_PAGE2 = "project2";
+    private static final String VIEW_PAGE3 = "project3";
     private static final String DONE_PAGE = "done";
     public static final String COMMAND = "project";
 
@@ -37,15 +42,32 @@ public class ProjectController {
         binder.registerCustomEditor(Long.class, new CustomNumberEditor(Long.class, true));
     }
 
-    @RequestMapping(value = "/project", method = RequestMethod.GET)
-    public String show(ModelMap model) {
+    @RequestMapping(value = "/project1", method = RequestMethod.GET)
+    public String showProject1(ModelMap model) {
 
         setupReferenceData(model, new Project());
 
-        return VIEW_PAGE;
+        return VIEW_PAGE1;
     }
 
-    @RequestMapping(value = "/project", method = RequestMethod.POST)
+    @RequestMapping(value = "/project1", params = "_action_save", method = RequestMethod.POST)
+    public String saveProject1(ModelMap model,
+                               @Valid @ModelAttribute Project project,
+                               BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+            setupReferenceData(model, project);
+            return VIEW_PAGE1;
+        }
+
+        redirectAttributes.addFlashAttribute("project", project);
+
+        return "redirect:done";
+    }
+
+
+    @RequestMapping(value = "/project", params = "_action_save", method = RequestMethod.POST)
     public String save(ModelMap model,
                        @Valid @ModelAttribute Project project,
                        BindingResult bindingResult) {
@@ -61,6 +83,7 @@ public class ProjectController {
     private void setupReferenceData(ModelMap model, Project project) {
         model.put("title", "New Project Create Page");
         model.put("logins", userService.getLogins());
+        model.put("projectTypes", ProjectType.values());
         model.put("project", project);
     }
 

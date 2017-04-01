@@ -37,32 +37,52 @@
 <body>
 <div class="container">
     <form:form commandName="project" method="post">
-        <h2>Create Project</h2><hr/>
+        <h2>Create Project</h2>
+        <hr/>
 
         <table>
             <tr>
-                <td class="labelCol"><span class="error">*</span> Project Name</td>
-                <td><form:input path="name" size="32"/> <form:errors path="name" cssClass="error"/></td>
-            </tr>
-            <tr>
-                <td class="labelCol">Select Manager</td>
-                <td>
-                    <form:select path="manager">
-                        <form:option value="" label="-- Please Select --"/>
-                        <form:options items="${logins}" itemValue="id" itemLabel="name"/>
-                    </form:select>
+                <td class="labelCol">
+                    <span class="error">*</span>Name
                 </td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="labelCol">Assign to</td>
                 <td>
-                    <form:select path="assignees">
-                        <form:option value="" label="-- Please Select --"/>
-                        <form:options items="${logins}" itemValue="id" itemLabel="name"/>
-                    </form:select>
+                    <form:input path="name" size="32"/>
+                    <form:errors path="name" cssClass="error"/>
                 </td>
-                <td>&nbsp;</td>
+            </tr>
+
+            <tr>
+                <td class="labelCol">
+                    <span class="error">*</span>Description
+                </td>
+                <td>
+                    <form:textarea path="description" size="1000"/>
+                    <form:errors path="description" cssClass="error"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="labelCol">
+                    Budget
+                </td>
+                <td>
+                    <form:input path="budget" size="10"/>
+                    <form:errors path="budget" cssClass="error"/>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="labelCol">
+                    Project Type
+                </td>
+                <td>
+                    <form:select path="projectType">
+                        <form:option value="" label="-- Please Select --"/>
+                        <form:options items="${projectTypes}"/>
+                    </form:select>
+
+                    <form:errors path="projectType" cssClass="error"/>
+                </td>
             </tr>
         </table>
         <div>
